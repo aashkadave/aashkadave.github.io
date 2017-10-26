@@ -1,6 +1,9 @@
 <!doctype html>
+<html>
+
 <meta charset="utf-8">
 <title>Food and Tacos in The Guardian</title>
+
 <!-- load D3js -->
 <script src="//d3plus.org/js/d3.js"></script>
 
@@ -10,7 +13,7 @@
 <!-- create container element for visualization -->
 <div id="viz"></div>
 
-<script>
+<script type="text/javascript">
   // sample data array
   var sample_data = [
     {"year": 1999, "name":"food", "mentions": 3867},
@@ -61,3 +64,5 @@
     .x("year")          // key to use for x-axis
     .draw()             // finally, draw the visualization!
 </script>
+
+</html>
