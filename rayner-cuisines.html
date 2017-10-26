@@ -1,0 +1,209 @@
+<!doctype html>
+
+<meta charset="utf-8">
+<title>How Often Jay Rayner Talks About Food and Tacos</title>
+
+<!-- load D3js -->
+<script src="//d3plus.org/js/d3.js"></script>
+
+<!-- load D3plus after D3js -->
+<script src="//d3plus.org/js/d3plus.js"></script>
+
+<!-- create container element for visualization -->
+<div id="viz"></div>
+
+<script>
+  // sample data array
+  var sample_data = [
+  {
+    "rayner_term": "mexican food",
+    "mentions": 0,
+    "year": "2000-2004"
+  },
+  {
+    "rayner_term": "mexican food",
+    "mentions": 2,
+    "year": "2005-2009"
+  },
+  {
+    "rayner_term": "mexican food",
+    "mentions": 2,
+    "year": 2010
+  },
+  {
+    "rayner_term": "mexican food",
+    "mentions": 1,
+    "year": 2011
+  },
+  {
+    "rayner_term": "mexican food",
+    "mentions": 1,
+    "year": 2012
+  },
+  {
+    "rayner_term": "mexican food",
+    "mentions": 3,
+    "year": 2013
+  },
+  {
+    "rayner_term": "mexican food",
+    "mentions": 1,
+    "year": 2014
+  },
+  {
+    "rayner_term": "mexican food",
+    "mentions": 1,
+    "year": 2015
+  },
+  {
+    "rayner_term": "mexican food",
+    "mentions": 2,
+    "year": 2016
+  },
+  {
+    "rayner_term": "indian food",
+    "mentions": 9,
+    "year": "2000-2004"
+  },
+  {
+    "rayner_term": "indian food",
+    "mentions": 9,
+    "year": "2005-2009"
+  },
+  {
+    "rayner_term": "indian food",
+    "mentions": 1,
+    "year": 2010
+  },
+  {
+    "rayner_term": "indian food",
+    "mentions": 1,
+    "year": 2011
+  },
+  {
+    "rayner_term": "indian food",
+    "mentions": "",
+    "year": 2012
+  },
+  {
+    "rayner_term": "indian food",
+    "mentions": 3,
+    "year": 2013
+  },
+  {
+    "rayner_term": "indian food",
+    "mentions": 5,
+    "year": 2014
+  },
+  {
+    "rayner_term": "indian food",
+    "mentions": 0,
+    "year": 2015
+  },
+  {
+    "rayner_term": "indian food",
+    "mentions": 1,
+    "year": 2016
+  },
+  {
+    "rayner_term": "chinese food",
+    "mentions": 9,
+    "year": "2000-2004"
+  },
+  {
+    "rayner_term": "chinese food",
+    "mentions": 8,
+    "year": "2005-2009"
+  },
+  {
+    "rayner_term": "chinese food",
+    "mentions": 0,
+    "year": 2010
+  },
+  {
+    "rayner_term": "chinese food",
+    "mentions": 0,
+    "year": 2011
+  },
+  {
+    "rayner_term": "chinese food",
+    "mentions": "",
+    "year": 2012
+  },
+  {
+    "rayner_term": "chinese food",
+    "mentions": 3,
+    "year": 2013
+  },
+  {
+    "rayner_term": "chinese food",
+    "mentions": 3,
+    "year": 2014
+  },
+  {
+    "rayner_term": "chinese food",
+    "mentions": 1,
+    "year": 2015
+  },
+  {
+    "rayner_term": "chinese food",
+    "mentions": 0,
+    "year": 2016
+  },
+  {
+    "rayner_term": "french food",
+    "mentions": 9,
+    "year": "2000-2004"
+  },
+  {
+    "rayner_term": "french food",
+    "mentions": 16,
+    "year": "2005-2009"
+  },
+  {
+    "rayner_term": "french food",
+    "mentions": 2,
+    "year": 2010
+  },
+  {
+    "rayner_term": "french food",
+    "mentions": 1,
+    "year": 2011
+  },
+  {
+    "rayner_term": "french food",
+    "mentions": "",
+    "year": 2012
+  },
+  {
+    "rayner_term": "french food",
+    "mentions": 2,
+    "year": 2013
+  },
+  {
+    "rayner_term": "french food",
+    "mentions": 1,
+    "year": 2014
+  },
+  {
+    "rayner_term": "french food",
+    "mentions": 1,
+    "year": 2015
+  },
+  {
+    "rayner_term": "french food",
+    "mentions": 0,
+    "year": 2016
+  }
+]
+  // instantiate d3plus
+  var visualization = d3plus.viz()
+    .container("#viz")  // container DIV to hold the visualization
+    .data(sample_data)  // data to use with the visualization
+    .type("bar")       // visualization type
+    .id("rayner_term")         // key for which our data is unique on
+    .text("rayner_term")       // key to use for display text
+    .y("mentions")         // key to use for y-axis
+    .x("year")          // key to use for x-axis
+    .draw()             // finally, draw the visualization!
+</script>
