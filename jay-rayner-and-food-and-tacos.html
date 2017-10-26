@@ -1,0 +1,63 @@
+<!doctype html>
+
+<meta charset="utf-8">
+<title>How Often Jay Rayner Talks About Food and Tacos</title>
+
+<!-- load D3js -->
+<script src="//d3plus.org/js/d3.js"></script>
+
+<!-- load D3plus after D3js -->
+<script src="//d3plus.org/js/d3plus.js"></script>
+
+<!-- create container element for visualization -->
+<div id="viz"></div>
+
+<script>
+  // sample data array
+  var sample_data = [
+    {"year": 2000, "name":"food", "mentions": 32},
+    {"year": 2001, "name":"food", "mentions": 44},
+    {"year": 2002, "name":"food", "mentions": 63},
+    {"year": 2003, "name":"food", "mentions": 64},
+    {"year": 2004, "name":"food", "mentions": 66},
+    {"year": 2005, "name":"food", "mentions": 78},
+    {"year": 2006, "name":"food", "mentions": 83},
+    {"year": 2007, "name":"food", "mentions": 137},
+    {"year": 2008, "name":"food", "mentions": 183},
+    {"year": 2009, "name":"food", "mentions": 115},
+    {"year": 2010, "name":"food", "mentions": 104},
+    {"year": 2011, "name":"food", "mentions": 66},
+    {"year": 2012, "name":"food", "mentions": 00},
+    {"year": 2013, "name":"food", "mentions": 126},
+    {"year": 2014, "name":"food", "mentions": 102},
+    {"year": 2015, "name":"food", "mentions": 107},
+    {"year": 2016, "name":"food", "mentions": 97},
+    {"year": 2000, "name":"taco", "mentions": 0},
+    {"year": 2001, "name":"taco", "mentions": 0},
+    {"year": 2002, "name":"taco", "mentions": 0},
+    {"year": 2003, "name":"taco", "mentions": 0},
+    {"year": 2004, "name":"taco", "mentions": 0},
+    {"year": 2005, "name":"taco", "mentions": 0},
+    {"year": 2006, "name":"taco", "mentions": 0},
+    {"year": 2007, "name":"taco", "mentions": 1},
+    {"year": 2008, "name":"taco", "mentions": 0},
+    {"year": 2009, "name":"taco", "mentions": 1},
+    {"year": 2010, "name":"taco", "mentions": 1},
+    {"year": 2011, "name":"taco", "mentions": 0},
+    {"year": 2012, "name":"taco", "mentions": 00},
+    {"year": 2013, "name":"taco", "mentions": 0},
+    {"year": 2014, "name":"taco", "mentions": 4},
+    {"year": 2015, "name":"taco", "mentions": 0},
+    {"year": 2016, "name":"taco", "mentions": 1}
+  ]
+  // instantiate d3plus
+  var visualization = d3plus.viz()
+    .container("#viz")  // container DIV to hold the visualization
+    .data(sample_data)  // data to use with the visualization
+    .type("bar")       // visualization type
+    .id("name")         // key for which our data is unique on
+    .text("name")       // key to use for display text
+    .y("mentions")         // key to use for y-axis
+    .x("year")          // key to use for x-axis
+    .draw()             // finally, draw the visualization!
+</script>
