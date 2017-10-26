@@ -1,0 +1,63 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Food and Tacos in The Guardian</title>
+<!-- load D3js -->
+<script src="//d3plus.org/js/d3.js"></script>
+
+<!-- load D3plus after D3js -->
+<script src="//d3plus.org/js/d3plus.js"></script>
+
+<!-- create container element for visualization -->
+<div id="viz"></div>
+
+<script>
+  // sample data array
+  var sample_data = [
+    {"year": 1999, "name":"food", "mentions": 3867},
+    {"year": 2000, "name":"food", "mentions": 4457},
+    {"year": 2001, "name":"food", "mentions": 6184},
+    {"year": 2002, "name":"food", "mentions": 5595},
+    {"year": 2003, "name":"food", "mentions": 6440},
+    {"year": 2004, "name":"food", "mentions": 6588},
+    {"year": 2005, "name":"food", "mentions": 6809},
+    {"year": 2006, "name":"food", "mentions": 7429},
+    {"year": 2007, "name":"food", "mentions": 8840},
+    {"year": 2008, "name":"food", "mentions": 11146},
+    {"year": 2009, "name":"food", "mentions": 7457},
+    {"year": 2010, "name":"food", "mentions": 7486},
+    {"year": 2011, "name":"food", "mentions": 8641},
+    {"year": 2012, "name":"food", "mentions": 8592},
+    {"year": 2013, "name":"food", "mentions": 10351},
+    {"year": 2014, "name":"food", "mentions": 10986},
+    {"year": 2015, "name":"food", "mentions": 10692},
+    {"year": 2016, "name":"food", "mentions": 9740}
+    {"year": 1999, "name":"taco", "mentions": 10},
+    {"year": 2000, "name":"taco", "mentions": 12},
+    {"year": 2001, "name":"taco", "mentions": 23},
+    {"year": 2002, "name":"taco", "mentions": 17},
+    {"year": 2003, "name":"taco", "mentions": 21},
+    {"year": 2004, "name":"taco", "mentions": 11},
+    {"year": 2005, "name":"taco", "mentions": 16},
+    {"year": 2006, "name":"taco", "mentions": 11},
+    {"year": 2007, "name":"taco", "mentions": 27},
+    {"year": 2008, "name":"taco", "mentions": 20},
+    {"year": 2009, "name":"taco", "mentions": 29},
+    {"year": 2010, "name":"taco", "mentions": 20},
+    {"year": 2011, "name":"taco", "mentions": 35},
+    {"year": 2012, "name":"taco", "mentions": 34},
+    {"year": 2013, "name":"taco", "mentions": 67},
+    {"year": 2014, "name":"taco", "mentions": 70},
+    {"year": 2015, "name":"taco", "mentions": 100},
+    {"year": 2016, "name":"taco", "mentions": 112}
+  ]
+  // instantiate d3plus
+  var visualization = d3plus.viz()
+    .container("#viz")  // container DIV to hold the visualization
+    .data(sample_data)  // data to use with the visualization
+    .type("line")       // visualization type
+    .id("name")         // key for which our data is unique on
+    .text("name")       // key to use for display text
+    .y("mentions")         // key to use for y-axis
+    .x("year")          // key to use for x-axis
+    .draw()             // finally, draw the visualization!
+</script>
