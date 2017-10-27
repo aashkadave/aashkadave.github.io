@@ -15,6 +15,9 @@
 
     <div id="viz_foodtacojr"></div>
 
+<h2>how often does jay rayner talk about certain cuisines?</h2>
+
+    <div id="viz_prejayrayner"></div>
 
     <!-- load D3js -->
     <script src="//d3plus.org/js/d3.js"></script>
@@ -126,7 +129,60 @@
             .x("year")          // key to use for x-axis
             .draw()             // finally, draw the visualization!
 
+// pre-cuisines jay rayner
 
+            var sample_data3 = [
+              {
+                "rayner_term": "mexican food",
+                "mentions": 0,
+                "year": "2000-2004"
+              },
+              {
+                "rayner_term": "mexican food",
+                "mentions": 2,
+                "year": "2005-2009"
+              },
+              {
+                "rayner_term": "indian food",
+                "mentions": 9,
+                "year": "2000-2004"
+              },
+              {
+                "rayner_term": "indian food",
+                "mentions": 9,
+                "year": "2005-2009"
+              },
+              {
+                "rayner_term": "chinese food",
+                "mentions": 9,
+                "year": "2000-2004"
+              },
+              {
+                "rayner_term": "chinese food",
+                "mentions": 8,
+                "year": "2005-2009"
+              },
+              {
+                "rayner_term": "french food",
+                "mentions": 9,
+                "year": "2000-2004"
+              },
+              {
+                "rayner_term": "french food",
+                "mentions": 16,
+                "year": "2005-2009"
+              }
+            ]
+              // instantiate d3plus
+              var visualization = d3plus.viz()
+                .container("#viz_prejayrayner")  // container DIV to hold the visualization
+                .data(sample_data3)  // data to use with the visualization
+                .type("bar")       // visualization type
+                .id("rayner_term")         // key for which our data is unique on
+                .text("rayner_term")       // key to use for display text
+                .y("mentions")         // key to use for y-axis
+                .x("year")          // key to use for x-axis
+                .draw()             // finally, draw the visualization!
 
     </script>
 
