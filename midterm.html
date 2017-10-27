@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Mexican Food in the UK</title>
+  </head>
+
+  <body>
+
+<h1>Mexican Food in the UK</h1>
+
+<h4>Anecdotally speaking, there's not much Mexican food in the UK. Some would go so far as to say the situation is sad, others would say it's desperate. This set of charts attempts to shed light on this mystery, by focusing on a single question:</h4>
+<h4>Is Mexican food in the UK a thing?</h4>
+
+<p> To find out if anecdotal experience aligns across borders, I asked several individuals what they thought about the present Mexican-food-in-UK-situation. Here's what they had to say:</p>
+
+<blockquote>“When I joyfully studied abroad in the UK in 2013, I expected uniform [i.e., mostly British] food. But I wasn’t emotionally prepared for the lack of Mexican and Tex-Mex cuisine. My overall experience was amazing. But queso access would have made the trip extraordinary.” -Anonymous, from Georgia</blockquote>
+
+<blockquote>“In the UK [burritos] are basically luxury snack food for middle or upper class people working at Canary Wharf (basically British Wall Street)."-Anonymous, from the UK</blockquote>
+
+<blockquote>“Well there are good Mexican-*inspired* restaurants..."-Anonymous, from the UK</blockquote>
+
+<blockquote>"It just wasn't there. The best we found had a substitute for every ingredient — the queso tasted like it was made of Camembert, and the salsa smelled distincly of Italian herbs. Wrong vibe."- Anonymous, from the US</blockquote>
+
+<p>So how can we go about figuring out whether Mexican food is a Thing Thing in the UK? Thanks to Jay Rayner, we have some options!</p>
+
+<p> Of course, this begs a question: who is Jay Rayner?</p>
+
+<p>Jay Rayner is a food critic and reviewer for The Guardian, and has been so for a very long time. His reviews are prolific (and often comical). Since he's been around for so long, we're using his food reviews as a benchmark.</p>
+
+<p>Does Jay Rayner, Voice of British Food Reviews and Tastes, talk about Mexican food? If yes, how? And what does this mean for those of us who go to the UK and just want a good taco?</p>
+
+<h2>"Food" and "Taco" Overall</h2>
+
+<p> Let's start large: how often do the words "food" and "taco" appear in The Guardian in any given year?</p>
+
+    <div id="viz_foodtaco1"></div>
+
+<h2>"Food" and "Taco" As Told By Jay Rayner</h2>
+
+<p> Let's zoom in a bit now: how often does Jay Rayner mention "food" or "taco"? This graph shows the number of times "Jay Rayner" appears in a given article alongside either "food" or "taco."</p>
+
+    <div id="viz_foodtacojr"></div>
+
+<h2>Cuisines, As Told by Jay Rayner</h2>
+
+<p> We're zooming in even further now. This graph looks at how often Jay Rayner mentions specific phrases related to given cuisines: French Food, Indian Food, Chinese Food, and Mexican Food.</p>
+
+    <div id="viz_prejayrayner"></div>
+
+<h2>Cuisines, As Told By Jay Rayner, Part 2</h2>
+
+<p> A closer zoom: Here we have the occurrence of specific cuisine phrases between 2010 and 2016. "Mexican Food" is gaining some traction, but not very much.</p>
+
+    <div id="viz_jr_cuisines"></div>
+
+    <!-- load D3js -->
+    <script src="//d3plus.org/js/d3.js"></script>
+
+    <!-- load D3plus after D3js -->
+    <script src="//d3plus.org/js/d3plus.js"></script>
+
+    <!-- create container element for food and taco overall visualization -->
+
+    <script>
+      // sample data array
+      var sample_data1 = [
+        {"year": 1999, "name":"food", "mentions": 3867},
+        {"year": 2000, "name":"food", "mentions": 4457},
+        {"year": 2001, "name":"food", "mentions": 6184},
+        {"year": 2002, "name":"food", "mentions": 5595},
+        {"year": 2003, "name":"food", "mentions": 6440},
+        {"year": 2004, "name":"food", "mentions": 6588},
+        {"year": 2005, "name":"food", "mentions": 6809},
+        {"year": 2006, "name":"food", "mentions": 7429},
+        {"year": 2007, "name":"food", "mentions": 8840},
+        {"year": 2008, "name":"food", "mentions": 11146},
+        {"year": 2009, "name":"food", "mentions": 7457},
+        {"year": 2010, "name":"food", "mentions": 7486},
+        {"year": 2011, "name":"food", "mentions": 8641},
+        {"year": 2012, "name":"food", "mentions": 8592},
+        {"year": 2013, "name":"food", "mentions": 10351},
+        {"year": 2014, "name":"food", "mentions": 10986},
+        {"year": 2015, "name":"food", "mentions": 10692},
+        {"year": 2016, "name":"food", "mentions": 9740},
+        {"year": 1999, "name":"taco", "mentions": 10},
+        {"year": 2000, "name":"taco", "mentions": 12},
+        {"year": 2001, "name":"taco", "mentions": 23},
+        {"year": 2002, "name":"taco", "mentions": 17},
+        {"year": 2003, "name":"taco", "mentions": 21},
+        {"year": 2004, "name":"taco", "mentions": 11},
+        {"year": 2005, "name":"taco", "mentions": 16},
+        {"year": 2006, "name":"taco", "mentions": 11},
+        {"year": 2007, "name":"taco", "mentions": 27},
+        {"year": 2008, "name":"taco", "mentions": 20},
+        {"year": 2009, "name":"taco", "mentions": 29},
+        {"year": 2010, "name":"taco", "mentions": 20},
+        {"year": 2011, "name":"taco", "mentions": 35},
+        {"year": 2012, "name":"taco", "mentions": 34},
+        {"year": 2013, "name":"taco", "mentions": 67},
+        {"year": 2014, "name":"taco", "mentions": 70},
+        {"year": 2015, "name":"taco", "mentions": 100},
+        {"year": 2016, "name":"taco", "mentions": 112}
+      ]
+      // instantiate d3plus
+      var visualization = d3plus.viz()
+        .container("#viz_foodtaco1")  // container DIV to hold the visualization
+        .data(sample_data1)  // data to use with the visualization
+        .type("line")       // visualization type
+        .id("name")         // key for which our data is unique on
+        .text("name")       // key to use for display text
+        .y("mentions")         // key to use for y-axis
+        .x("year")          // key to use for x-axis
+        .draw()             // finally, draw the visualization!
+
+//create container element for jay rayner food and taco visualization
+
+
+          // sample data array
+          var sample_data2 = [
+            {"year": 2000, "name":"food", "mentions": 32},
+            {"year": 2001, "name":"food", "mentions": 44},
+            {"year": 2002, "name":"food", "mentions": 63},
+            {"year": 2003, "name":"food", "mentions": 64},
+            {"year": 2004, "name":"food", "mentions": 66},
+            {"year": 2005, "name":"food", "mentions": 78},
+            {"year": 2006, "name":"food", "mentions": 83},
+            {"year": 2007, "name":"food", "mentions": 137},
+            {"year": 2008, "name":"food", "mentions": 183},
+            {"year": 2009, "name":"food", "mentions": 115},
+            {"year": 2010, "name":"food", "mentions": 104},
+            {"year": 2011, "name":"food", "mentions": 66},
+            {"year": 2012, "name":"food", "mentions": 107},
+            {"year": 2013, "name":"food", "mentions": 126},
+            {"year": 2014, "name":"food", "mentions": 102},
+            {"year": 2015, "name":"food", "mentions": 107},
+            {"year": 2016, "name":"food", "mentions": 97},
+            {"year": 2000, "name":"taco", "mentions": 0},
+            {"year": 2001, "name":"taco", "mentions": 0},
+            {"year": 2002, "name":"taco", "mentions": 0},
+            {"year": 2003, "name":"taco", "mentions": 0},
+            {"year": 2004, "name":"taco", "mentions": 0},
+            {"year": 2005, "name":"taco", "mentions": 0},
+            {"year": 2006, "name":"taco", "mentions": 0},
+            {"year": 2007, "name":"taco", "mentions": 1},
+            {"year": 2008, "name":"taco", "mentions": 0},
+            {"year": 2009, "name":"taco", "mentions": 1},
+            {"year": 2010, "name":"taco", "mentions": 1},
+            {"year": 2011, "name":"taco", "mentions": 0},
+            {"year": 2012, "name":"taco", "mentions": 1},
+            {"year": 2013, "name":"taco", "mentions": 0},
+            {"year": 2014, "name":"taco", "mentions": 4},
+            {"year": 2015, "name":"taco", "mentions": 0},
+            {"year": 2016, "name":"taco", "mentions": 1}
+          ]
+          // instantiate d3plus
+          var visualization = d3plus.viz()
+            .container("#viz_foodtacojr")  // container DIV to hold the visualization
+            .data(sample_data2)  // data to use with the visualization
+            .type("bar")       // visualization type
+            .id("name")         // key for which our data is unique on
+            .text("name")       // key to use for display text
+            .y("mentions")         // key to use for y-axis
+            .x("year")          // key to use for x-axis
+            .draw()             // finally, draw the visualization!
+
+// pre-cuisines jay rayner
+
+            var sample_data3 = [
+              {
+                "rayner_term": "mexican food",
+                "mentions": 0,
+                "year": "2000-2004"
+              },
+              {
+                "rayner_term": "mexican food",
+                "mentions": 2,
+                "year": "2005-2009"
+              },
+              {
+                "rayner_term": "indian food",
+                "mentions": 9,
+                "year": "2000-2004"
+              },
+              {
+                "rayner_term": "indian food",
+                "mentions": 9,
+                "year": "2005-2009"
+              },
+              {
+                "rayner_term": "chinese food",
+                "mentions": 9,
+                "year": "2000-2004"
+              },
+              {
+                "rayner_term": "chinese food",
+                "mentions": 8,
+                "year": "2005-2009"
+              },
+              {
+                "rayner_term": "french food",
+                "mentions": 9,
+                "year": "2000-2004"
+              },
+              {
+                "rayner_term": "french food",
+                "mentions": 16,
+                "year": "2005-2009"
+              }
+            ]
+              // instantiate d3plus
+              var visualization = d3plus.viz()
+                .container("#viz_prejayrayner")  // container DIV to hold the visualization
+                .data(sample_data3)  // data to use with the visualization
+                .type("bar")       // visualization type
+                .id("rayner_term")         // key for which our data is unique on
+                .text("rayner_term")       // key to use for display text
+                .y("mentions")         // key to use for y-axis
+                .x("year")          // key to use for x-axis
+                .draw()             // finally, draw the visualization!
+
+                var sample_data4 = [
+                  {
+                    "rayner_term": "mexican food",
+                    "mentions": 2,
+                    "year": 2010
+                  },
+                  {
+                    "rayner_term": "mexican food",
+                    "mentions": 1,
+                    "year": 2011
+                  },
+                  {
+                    "rayner_term": "mexican food",
+                    "mentions": 1,
+                    "year": 2012
+                  },
+                  {
+                    "rayner_term": "mexican food",
+                    "mentions": 3,
+                    "year": 2013
+                  },
+                  {
+                    "rayner_term": "mexican food",
+                    "mentions": 1,
+                    "year": 2014
+                  },
+                  {
+                    "rayner_term": "mexican food",
+                    "mentions": 1,
+                    "year": 2015
+                  },
+                  {
+                    "rayner_term": "mexican food",
+                    "mentions": 2,
+                    "year": 2016
+                  },
+                  {
+                    "rayner_term": "indian food",
+                    "mentions": 1,
+                    "year": 2010
+                  },
+                  {
+                    "rayner_term": "indian food",
+                    "mentions": 1,
+                    "year": 2011
+                  },
+                  {
+                    "rayner_term": "indian food",
+                    "mentions": "0",
+                    "year": 2012
+                  },
+                  {
+                    "rayner_term": "indian food",
+                    "mentions": 3,
+                    "year": 2013
+                  },
+                  {
+                    "rayner_term": "indian food",
+                    "mentions": 5,
+                    "year": 2014
+                  },
+                  {
+                    "rayner_term": "indian food",
+                    "mentions": 0,
+                    "year": 2015
+                  },
+                  {
+                    "rayner_term": "indian food",
+                    "mentions": 1,
+                    "year": 2016
+                  },
+                  {
+                    "rayner_term": "chinese food",
+                    "mentions": 0,
+                    "year": 2010
+                  },
+                  {
+                    "rayner_term": "chinese food",
+                    "mentions": 0,
+                    "year": 2011
+                  },
+                  {
+                    "rayner_term": "chinese food",
+                    "mentions": 2,
+                    "year": 2012
+                  },
+                  {
+                    "rayner_term": "chinese food",
+                    "mentions": 3,
+                    "year": 2013
+                  },
+                  {
+                    "rayner_term": "chinese food",
+                    "mentions": 3,
+                    "year": 2014
+                  },
+                  {
+                    "rayner_term": "chinese food",
+                    "mentions": 1,
+                    "year": 2015
+                  },
+                  {
+                    "rayner_term": "chinese food",
+                    "mentions": 0,
+                    "year": 2016
+                  },
+                  {
+                    "rayner_term": "french food",
+                    "mentions": 2,
+                    "year": 2010
+                  },
+                  {
+                    "rayner_term": "french food",
+                    "mentions": 1,
+                    "year": 2011
+                  },
+                  {
+                    "rayner_term": "french food",
+                    "mentions": "0",
+                    "year": 2012
+                  },
+                  {
+                    "rayner_term": "french food",
+                    "mentions": 2,
+                    "year": 2013
+                  },
+                  {
+                    "rayner_term": "french food",
+                    "mentions": 1,
+                    "year": 2014
+                  },
+                  {
+                    "rayner_term": "french food",
+                    "mentions": 1,
+                    "year": 2015
+                  },
+                  {
+                    "rayner_term": "french food",
+                    "mentions": 0,
+                    "year": 2016
+                  }
+                ]
+                  // instantiate d3plus
+                  var visualization = d3plus.viz()
+                    .container("#viz_jr_cuisines")  // container DIV to hold the visualization
+                    .data(sample_data4)  // data to use with the visualization
+                    .type("bar")       // visualization type
+                    .id("rayner_term")         // key for which our data is unique on
+                    .text("rayner_term")       // key to use for display text
+                    .y("mentions")         // key to use for y-axis
+                    .x("year")          // key to use for x-axis
+                    .draw()             // finally, draw the visualization!
+
+
+
+    </script>
+
+  </body>
+
+</html>
